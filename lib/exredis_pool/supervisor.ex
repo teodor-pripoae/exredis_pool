@@ -21,7 +21,7 @@ defmodule ExredisPool.Supervisor do
   def redis_config do
     if redis_url = System.get_env("REDIS_URL") do
       config = URI.parse(redis_url)
-      [config.host, config.port, String.strip(config.path, ?/)]
+      [String.to_char_list(config.host), config.port, String.strip(config.path, ?/) |> String.to_integer]
     else
       ["127.0.0.1", 6379]
     end
