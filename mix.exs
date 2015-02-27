@@ -11,11 +11,7 @@ defmodule ExredisPool.Mixfile do
   # Configuration for the OTP application
   def application do
     [mod: { ExredisPool, [] },
-     env: [
-           size_args: [ size: System.get_env("REDIS_POOL_SIZE") || 10,
-                        max_overflow: System.get_env("REDIS_POOL_MAX") || 30 ],
-           redis_args: redis_config]
-    ]
+     env: []]
   end
 
   # Returns the list of dependencies in the format:
@@ -28,14 +24,5 @@ defmodule ExredisPool.Mixfile do
      { :eredis, github: "wooga/eredis" },
      { :poolboy, github: "devinus/poolboy" }
     ]
-  end
-
-  def redis_config do
-    if redis_url = System.get_env("REDIS_URL") do
-      config = URI.parse(redis_url)
-      [config.host, config.port, String.strip(config.path, ?/)]
-    else
-      ["127.0.0.1", 6379]
-    end
   end
 end
