@@ -5,6 +5,7 @@ defmodule ExredisPool.Supervisor do
     pool_args = [name: { :local, name },
                  worker_module: :eredis,
                  size_args: size_config]
+    IO.puts("Redis config #{inspect(redis_config)}")
     :poolboy.child_spec({ :local, name }, pool_args, redis_config)
   end
 
@@ -13,7 +14,6 @@ defmodule ExredisPool.Supervisor do
   end
 
   def init([]) do
-    opts = :application.get_all_env
     children = [ pool_spec(ExredisPool.pool_name) ]
     supervise(children, strategy: :one_for_one)
   end
