@@ -1,5 +1,5 @@
 defmodule ExredisPool do
-  use Application.Behaviour
+  use Application
 
   def pool_name, do: :__exredis_pool__
 
@@ -314,7 +314,7 @@ defmodule ExredisPool do
     end
 
     defp to_redis_command(raw_name) do
-      raw_name |> atom_to_binary
+      raw_name |> Atom.to_string
                |> String.upcase
                |> String.rstrip(??)
                |> String.split("_")

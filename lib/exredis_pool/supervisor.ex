@@ -1,5 +1,5 @@
 defmodule ExredisPool.Supervisor do
-  use Supervisor.Behaviour
+  use Supervisor
 
   def pool_spec(name, opts) do
     pool_args = [ name: { :local, name },
