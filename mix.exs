@@ -15,7 +15,6 @@ defmodule ExredisPool.Mixfile do
            size_args: [ size: System.get_env("REDIS_POOL_SIZE") || 10,
                         max_overflow: System.get_env("REDIS_POOL_MAX") || 30 ],
            redis_args: redis_config]
-       ]
     ]
   end
 
