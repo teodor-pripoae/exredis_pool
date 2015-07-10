@@ -23,7 +23,7 @@ defmodule ExredisPool.Supervisor do
       config = URI.parse(redis_url)
       [{:host, String.to_char_list(config.host)},
        {:port, config.port},
-       {:db,   String.strip(config.path, ?/) |> String.to_integer}]
+       {:database,   String.strip(config.path, ?/) |> String.to_integer}]
     else
       []
     end
